@@ -1,4 +1,5 @@
-import { createContext, useState }  from 'react'
+import { createContext, useEffect, useState }  from 'react'
+import { jobsData } from '../assets/assets';
 export const AppContext = createContext()
 
 export const AppContextProvider = ({children})=> {
@@ -9,10 +10,23 @@ export const AppContextProvider = ({children})=> {
     })
 
     const [isSearched, setIsSearched]= useState(false)
+    const [jobs, setJobs] = useState([])
+
+    //Function to fetch jobsData from assets.js and store it in jobs state variable
+
+    const fetchJobs = async()=>{
+        setJobs(jobsData)
+    }
+
+    //execute the function whenever the client pproject gets loaded in the browser
+    useEffect(()=>{
+        fetchJobs()
+    },[])
 
     const value = {
         setSearchFilter, searchFilter,
-        isSearched, setIsSearched
+        isSearched, setIsSearched,
+        jobs, setJobs
     }
 
     return (
