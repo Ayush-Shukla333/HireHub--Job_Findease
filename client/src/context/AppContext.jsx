@@ -11,6 +11,7 @@ export const AppContextProvider = ({children})=> {
 
     const [isSearched, setIsSearched]= useState(false)
     const [jobs, setJobs] = useState([])
+    const [showRecruiterLogin, setShowRecruiterLogin] = useState(false)
 
     //Function to fetch jobsData from assets.js and store it in jobs state variable
 
@@ -26,7 +27,8 @@ export const AppContextProvider = ({children})=> {
     const value = {
         setSearchFilter, searchFilter,
         isSearched, setIsSearched,
-        jobs, setJobs
+        jobs, setJobs, 
+        showRecruiterLogin, setShowRecruiterLogin,
     }
 
     return (

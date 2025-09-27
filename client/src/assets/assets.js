@@ -27,6 +27,49 @@ export const JobLocations = [
     "New York"
 ]
 
+export const jobsApplied = [
+    {
+        company: 'Amazon',
+        title: 'Full Stack Developer',
+        location: 'Bangalore',
+        date: '22 Aug, 2024',
+        status: 'Pending',
+        logo: company_icon,
+    },
+    {
+        company: 'Meta',
+        title: 'Data Scientist',
+        location: 'San Francisco',
+        date: '22 Aug, 2024',
+        status: 'Rejected',
+        logo: company_icon,
+    },
+    {
+        company: 'Google',
+        title: 'Marketing Manager',
+        location: 'London',
+        date: '25 Sep, 2024',
+        status: 'Accepted',
+        logo: company_icon,
+    },
+    {
+        company: 'Qualcomm',
+        title: 'UI/UX Designer',
+        location: 'Dubai',
+        date: '15 Oct, 2024',
+        status: 'Pending',
+        logo: company_icon,
+    },
+    {
+        company: 'Microsoft',
+        title: 'Full Stack Developer',
+        location: 'Hyderabad',
+        date: '25 Sep, 2024',
+        status: 'Accepted',
+        logo: company_icon,
+    },
+];
+
 export const jobsData = [
     {
         _id: '1',
