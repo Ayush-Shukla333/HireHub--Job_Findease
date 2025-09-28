@@ -1,76 +1,84 @@
-**HireHub – MERN Job Portal**
+# 🧑‍💼 HireHub – MERN Job Portal  
 
-HireHub is a full-stack MERN-based Job Portal that connects job seekers with employers. It allows candidates to search, filter, and apply for jobs while providing recruiters an easy way to post and manage openings.
-In its upcoming phase, HireHub will include AI-powered Resume Analysis and Job Match Scoring to make the hiring process smarter and more efficient.
+HireHub is a full-stack MERN-based Job Portal that connects job seekers with employers. It allows candidates to search, filter, and apply for jobs while providing recruiters an easy way to post and manage openings. In its upcoming phase, HireHub will include AI-powered Resume Analysis and Job Match Scoring to make the hiring process smarter and more efficient.
 
-**✅ Current Features**
+---
 
-🔍 Job Search & Filters:
+## ✅ Current Features  
 
-Search jobs by title, location, and category.
+### 🔍 Job Search & Filters  
+- Search jobs by **title, location, and category**  
+- Real-time filtering with applied search tags  
 
-Real-time filtering with applied search tags.
+### 📄 Job Listings & Pagination  
+- Clean **job listing cards** with essential details  
+- Pagination for browsing jobs easily  
 
-📄 Job Listings & Pagination:
+### 📱 Responsive UI  
+- Built with **React + Tailwind CSS**  
+- Fully responsive across **mobile, tablet, and desktop**  
+- App download section with **Google Play** & **App Store** badges  
 
-Clean job listing cards with essential details.
+### 🧑‍💼 Recruiter Dashboard  
+- Post, manage, edit, and delete job listings  
+- Track applications in real time  
 
-Pagination for browsing jobs easily.
+### 📂 Application Tracking  
+- Recruiters can **accept/reject applications**  
+- Resume uploads supported  
 
-📱 Responsive UI:
+### ⚙️ Others  
+- **Error monitoring** & performance tracking (Sentry integration)  
+- **Deployment**: Vercel (frontend) + hosted backend  
+- **CRUD operations** for jobs, candidates, and applications  
 
-Built with React + Tailwind CSS.
+---
 
-Fully responsive across mobile, tablet, and desktop.
+## 🚀 Upcoming Features  
 
-App download section with Google Play and App Store badges.
+### 🤖 Resume Analysis + Job Match Scoring (AI/NLP Integration)  
+- Parse uploaded resumes using NLP  
+- Extract **skills, keywords, and experience**  
+- Provide a **match percentage score** vs. job description  
 
-Recruiter dashboard:
+### 👨‍💼 User Authentication (JWT)  
+- Candidate and recruiter login/signup  
+- **Role-based access control**  
 
-Post, manage, edit, and delete job listings  
+---
 
-Application tracking:
+## 🛠️ Tech Stack  
 
-Recruiters can accept/reject applications and view resume uploads  
+**Frontend**  
+- React (Vite)  
+- React Router  
+- Tailwind CSS  
+- Heroicons & React Icons  
 
-Error monitoring & performance (Sentry integration)  
+**Backend**  
+- Node.js  
+- Express.js  
 
-Deployment using Vercel (frontend) + hosted backend  
+**Database**  
+- MongoDB (Mongoose)  
 
-CRUD operations for jobs, candidates, and applications  
+**Authentication**  
+- Clerk (tutorial) or JWT (custom)  
 
-**🚀 Upcoming Features**
+**Monitoring / Logging**  
+- Sentry  
 
-🤖 Resume Analysis + Job Match Scoring (AI/NLP Integration) :
+**Deployment**  
+- Vercel (frontend)  
+- Render (backend host)  
 
-Parse uploaded resumes using NLP.
+**AI/NLP (Planned)**  
+- Python (Flask/FastAPI microservice)  
+- Libraries: **spaCy, scikit-learn, transformers**  
 
-Extract key skills, keywords, and experience.
+## 👨‍💻 Author  
+**Ayush Shukla**  
+🎓 Final Year B.Tech | 💻 MERN Stack Developer | 🤖 AI Enthusiast  
 
-Provide a match percentage score between a candidate’s resume and job description.
-
-👨‍💼 User Authentication (JWT) :
-
-Candidate and recruiter login/signup.
-
-Role-based access control.
-
-**🛠️ Tech Stack**
-
-Frontend:React (Vite), React Router, Tailwind CSS, Heroicons & React Icons
-
-Backend: Node.js, Express.js
-
-Database: MongoDB (with Mongoose)
-
-Authentication : Clerk or JWT
-
-Monitoring / Logging : Sentry
-
-Deployment: Vercel (frontend),  Render (Node backend host)
-
-AI/NLP:
-Python (Flask/FastAPI microservice for Resume Analysis)
-
-NLP libraries (spaCy, scikit-learn, transformers)
+---
 
