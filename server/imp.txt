@@ -1,7 +1,0 @@
-models folder stores the mongoose model that manages database tasks
-routes folder we create multiple routes
-controllers folder create multiple files where many logics are handled
-middlewares like multer , cloudinary are creted
-
-utils folder stores common logic for the controller function like generating a token for  user
-config folder stores configuration file for mongodb
