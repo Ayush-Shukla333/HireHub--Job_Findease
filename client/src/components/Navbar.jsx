@@ -12,7 +12,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const {setShowRecruiterLogin} = useContext(AppContext)
   return (
-    <div className = "shadow py-2">
+    <div className = "shadow py-4">
       <div className = "container px-10 2xl mx-auto flex justify-between items-center">
         <img onClick={()=> navigate('/')} src = {hirehubLogo} alt = "logo" className = "w-35 h-auto items-center cursor-pointer"/>
         {

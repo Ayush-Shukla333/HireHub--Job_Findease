@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useContext, useEffect} from 'react'
 import { useState } from 'react'
 import { UserIcon } from '@heroicons/react/24/outline';
 import { LockClosedIcon } from '@heroicons/react/24/outline';
 import { EnvelopeIcon } from '@heroicons/react/24/outline';
 import UploadArea from '../assets/upload_area.svg'
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import { AppContext } from '../context/AppContext';
+
 const RecruiterLogin = () => {
   const [state, setState] = useState('Login')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
-
   const [image, setImage] = useState(false)
   const [isTextDataSubmitted, setIsTextDataSubmitted] = useState(false)
+  const {setShowRecruiterLogin} = useContext(AppContext)
 
   const onSubmitHandler = async (e) => {
     e.preventDefault(); //prevent the webpage to reload on form submission
@@ -19,21 +22,29 @@ const RecruiterLogin = () => {
       setIsTextDataSubmitted(true)
     }
   }
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'; // Disable scrolling when the recruiter login popup is open
+    return () => { document.body.style.overflow = 'auto'; 
+    // Enable scrolling when the popup is closed
+    }
+  }, [])
+  
   return (
     <div className='absolute top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center '>
       <form onSubmit = {onSubmitHandler} className='relative  bg-white p-11 rounded-2xl text-slate-500'>
         <h1 className='text-center text-2xl text-neutral-700 font-medium'>Recruiter {state}</h1>
-        <p className='text-sm mt-2'>Welcome Back !! Please sign in to continue.</p>
+        {state === 'Login' &&<p className='text-sm mt-2'>Welcome Back !! Please sign in to continue.</p>}
         {/* if the state is sign up and text data is submitted succesfully , we give the option to upload company logo */}
         {
           state === 'Sign Up' && isTextDataSubmitted ?
             <>
-            <div className='flex items-center gap-4 my-10'>
+            <div className='flex items-center gap-4 my-3'>
               <label htmlFor="image">
-                <img className="w-16 rounded-full cursor-pointer hover:scale-120" src = {image ? URL.createObjectURL(image): UploadArea} />
+                <img className="w-20 rounded-full cursor-pointer bg-gray-700" src = {image ? URL.createObjectURL(image): UploadArea} />
                 <input onChange = {e=>setImage(e.target.files[0])} type = "file" id='image' hidden/>
               </label>
-              <p>Upload Company <br/>Logo</p>
+              <p className='text-sm font-medium'>Upload Company Logo</p>
             </div>
             </>
             :
@@ -56,11 +67,14 @@ const RecruiterLogin = () => {
 
             </>
         }
-        <p className='text-sm text-blue-600 cursor-pointer my-2 text-right'>Forgot Password?</p>
+        {state === 'Login' && <p className='text-sm text-blue-600 cursor-pointer mt-4 text-right'>Forgot Password?</p>}
+        
         <button type = 'submit' className='bg-blue-800 text-white w-full py-2 rounded-3xl mt-4 hover:bg-blue-600'>
           {state === 'Login' ? 'Login' : isTextDataSubmitted ? 'Create Account': 'Next'}
         </button>
         {state === 'Login' ? <p className='mt-3 text-center'>Don't have an account ? <span className="text-blue-600 cursor-pointer" onClick={() => setState("Sign Up")}>Sign Up</span></p> : <p className='mt-3 text-center'>Already have an account ? <span className="text-blue-600 cursor-pointer" onClick={() => setState("Login")}>Login</span></p>}
+
+        <XMarkIcon onClick={e=> setShowRecruiterLogin(false)} className='absolute top-5 right-5 cursor-pointer h-5 w-5 hover:text-red-500'/>
       </form>
     </div>
   )

@@ -1,11 +1,20 @@
 import company_icon from "./company_icon.svg"
 import left_arrow_icon from './left_arrow_icon.svg';
 import right_arrow_icon from './right_arrow_icon.svg';
+import profile_img from "./profile_img.png";
 
 export const assets = {
     left_arrow_icon,
-    right_arrow_icon
+    right_arrow_icon,
+    company_icon,
+    profile_img,
 }
+export const manageJobsData = [
+    { _id: 1, title: "Full Stack Developer", date: 1729102298497, location: "Bangalore", applicants: 20 },
+    { _id: 2, title: "Data Scientist", date: 1729102298497, location: "San Francisco", applicants: 15 },
+    { _id: 3, title: "Marketing Manager", date: 1729102298497, location: "London", applicants: 2 },
+    { _id: 4, title: "UI/UX Designer", date: 1729102298497, location: "Dubai", applicants: 25 }
+];
 
 export const JobCategories = [
     "Programming",
@@ -68,6 +77,16 @@ export const jobsApplied = [
         status: 'Accepted',
         logo: company_icon,
     },
+];
+
+export const viewApplicationsPageData = [
+    { _id: 1, name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Bangalore", imgSrc: profile_img },
+    { _id: 2, name: "Enrique Murphy", jobTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
+    { _id: 3, name: "Alison Powell", jobTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
+    { _id: 4, name: "Richard Francner", jobTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
+    { _id: 5, name: "Peter Parker", jobTitle: "Software Engineer", location: "Hyderabad", imgSrc: profile_img },
+    { _id: 6, name: "Alice Cowell", jobTitle: "Product Manager", location: "New Delhi", imgSrc: profile_img },
+    { _id: 7, name: "Henry Dey", jobTitle: "Back End Engineer", location: "Chennai", imgSrc: profile_img },
 ];
 
 export const jobsData = [

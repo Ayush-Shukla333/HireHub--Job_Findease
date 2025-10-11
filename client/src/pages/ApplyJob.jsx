@@ -39,7 +39,7 @@ const ApplyJob = () => {
       <Navbar />
       <div className='min-h-screen flex flex-col py-6 container px-4 sm:px-8 md:px-12 lg:px-20 2xl:px-32 mx-auto'>
         <div className='bg-white text-black rounded-lg w-full'>
-          <div className='flex justify-center md:justify-between flex-wrap gap-5 px-4 sm:px-8 lg:px-14 py-10 mb-6 bg-sky-100 border border-sky-400 rounded-xl'>
+          <div className='flex justify-center md:justify-between flex-wrap gap-5 px-4 sm:px-8 lg:px-14 py-15 mb-6 bg-sky-100 border border-sky-400 rounded-xl'>
             <div className='flex flex-col md:flex-row gap-6 md:gap-10 items-center'>
               <img className="h-18 bg-white rounded-lg p-4 mr-0.5 max-md:mb-4 border" src={jobData.companyId.image} />
               <div className='text-center md:text-left text-neutral-7  00'>
