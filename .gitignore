@@ -2,4 +2,4 @@ node_modules/
 client/.env
 server/.env
 server/node_modules/
-server/.imp.txt/
+server/imp.txt
