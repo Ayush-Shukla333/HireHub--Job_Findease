@@ -9,13 +9,13 @@ export const clerkWebhooks = async (req, res) => {
 
         //verifying Headers
         await whook.verify(JSON.stringify(req.body), {
-            'svix-id': req.headers['svix-id'],
-            'svix-timestamp': req.headers['svix-timestamp'],
-            'svix-signature': req.headers['svix-signature']
+            "svix-id": req.headers["svix-id"],
+            "svix-timestamp": req.headers["svix-timestamp"],
+            "svix-signature": req.headers["svix-signature"]
         })
 
         //get data from req body
-        const {type, data} = req.body;
+        const {data, type} = req.body;
 
         //switch case to handle different webhook events
         switch (type) {
@@ -23,7 +23,7 @@ export const clerkWebhooks = async (req, res) => {
                 const userData = {
                     _id:data.id,
                     email:data.email_addresses[0].email_address,
-                    firstName:data.first_name + " " + data.last_name,
+                    name:data.first_name + " " + data.last_name,
                     image: data.image_url,
                     resume:''
                 }
@@ -35,8 +35,8 @@ export const clerkWebhooks = async (req, res) => {
             case 'user.updated': {
                 const userData = {
                     email:data.email_addresses[0].email_address,
-                    firstName:data.first_name + " " + data.last_name,
-                    image: data.image_url
+                    name:data.first_name + " " + data.last_name,
+                    image: data.image_url,
                 }
                 await User.findByIdAndUpdate(data.id, userData);
                 res.json({})
