@@ -5,7 +5,7 @@ const JobCard = ({ job }) => {
   return (
     <div className='border-gray-300 border-2 px-5 py-2 rounded hover:shadow-lg transition-shadow duration-300'>
       <div className='flex justify-between items-center mb-4'>
-        <img className="h-8" src={companyIcon}/>
+        <img className="h-8" src={job.companyId.image}/>
       </div>
       <h4 className='font-medium text-xl mt-2'>{job.title}</h4>
       <div className='flex gap-3 text-xs mt-2'>

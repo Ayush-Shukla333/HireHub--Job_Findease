@@ -7,6 +7,7 @@ import amazonLogo from '../assets/amazon_logo.png'
 import adobeLogo from '../assets/adobe_logo.png'
 import { MagnifyingGlassIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import { AppContext } from '../context/AppContext'
+
 const Hero = () => {
     const {setSearchFilter, setIsSearched} = useContext(AppContext)
 
@@ -24,29 +25,34 @@ const Hero = () => {
     return (
         <div className='container 2xl:px-20 mx-auto my-10 px-4 sm:px-6 lg:px-8'>
             <div className="bg-gradient-to-r from-purple-700 to-purple-950 py-15 sm:py-14 md:py-20 text-center text-white mx-2 sm:mx-6 md:mx-10 rounded-xl">
-                <h2 className='text-yellow-100 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium mb-4 sm:mb-5'>Over 7,000+ jobs to apply</h2>
+                <h2 className='text-yellow-100 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium mb-4 sm:mb-5'>Over 1,000+ jobs to apply</h2>
                 <p className='mb-6 sm:mb-8 max-w-2xl mx-auto text-md sm:text-md md:text-lg text-white font-light  px-3 sm:px-5'>Your Next Big Career Move Starts Right Here - Explore the Best Job Opportunities and Take the First Step Toward Your Future!</p>
-                <div className='flex items-center justify-between text-gray-600 bg-white rounded w-full max-w-sm sm:max-w-lg md:max-w-xl px-2 sm:px-4 mx-auto'>
-                    <div className='flex items-center flex-1 min-w-0'>
-                        <MagnifyingGlassIcon className="h-4 sm:h-5 w-4 sm:w-5 mr-2 shrink-0" />
+                
+                {/* Fixed Search Bar */}
+                <div className='flex items-center justify-between text-gray-600 bg-white rounded-full w-full max-w-sm sm:max-w-lg md:max-w-xl p-1 mx-auto shadow-md'>
+                    <div className='flex items-center flex-1'>
+                        <MagnifyingGlassIcon className="h-5 w-5 text-gray-400 ml-2" />
                         <input
                             type="text"
                             placeholder="Search for jobs"
-                            className="flex-1 outline-none text-xs sm:text-sm md:text-base"
+                            className="flex-1 outline-none ml-2 text-gray-700 text-sm placeholder:text-gray-400"
                             ref={titleRef}
                         />
                     </div>
-                    <p className='hidden xs:block text-xl text-gray-500 px-2'>|</p>
-                    <div className='flex items-center w-full sm:w-auto mt-2 sm:mt-0'>
-                        <MapPinIcon className="h-4 sm:h-5 w-4 sm:w-5 mr-2" />
+                    
+                    <div className='hidden sm:block h-8 w-px bg-gray-300'></div>
+                    
+                    <div className='flex items-center flex-1'>
+                        <MapPinIcon className="h-5 w-5 text-gray-400 ml-4" />
                         <input
                             type="text"
                             placeholder="Location"
-                            className="flex-1 outline-none text-sm sm:text-base"
+                            className="flex-1 outline-none ml-2 text-gray-700 text-sm placeholder:text-gray-400"
                             ref={locationRef}
                         />
                     </div>
-                    <button onClick={onSearch} className="bg-blue-600 px-3 sm:px-5 md:px-6 py-2 rounded hover:bg-blue-800 cursor-pointer ml-1 text-white font-medium text-xs sm:text-sm md:text-base shrink-0">Search</button>
+                    
+                    <button onClick={onSearch} className="bg-blue-600 px-6 py-2 rounded-full hover:bg-blue-700 cursor-pointer text-white font-medium text-sm">Search</button>
                 </div>
             </div>
 

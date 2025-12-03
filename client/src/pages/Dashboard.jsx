@@ -4,26 +4,49 @@ import { NavLink, useNavigate, Outlet } from 'react-router-dom'
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { FaUserCheck } from 'react-icons/fa';
 import { FaCog } from 'react-icons/fa'
+import { useContext, useEffect } from 'react';
+import { AppContext } from '../context/AppContext';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+
+  const { companyData, setCompanyData, setCompanyToken} = useContext(AppContext);
+
+  //Function to logout for company
+
+  const logout = ()=>{
+    setCompanyData(null)
+    setCompanyToken(null)
+    localStorage.removeItem('companyToken')
+    navigate('/')
+  }
+
+  useEffect(()=>{
+    if(companyData){
+      navigate('/dashboard/manage-jobs')
+    }
+  },[companyData])
+  
   return (
     <div className='min-h-screen'>
+
       {/* Navbar for recruiter panel */}
       <div className='shadow py-4'>
         <div className='px-10 flex justify-between items-center'>
           <img onClick={e => navigate('/')} src={hirehubLogo} alt="logo" className="w-33 max-sm:w-32 h-auto items-center cursor-pointer" />
-          <div className='flex items-center gap-4'>
-            <p className='max-sm:hidden mr-5'>Welcome Ayush</p>
+          {companyData && (
+            <div className='flex items-center gap-4'>
+            <p className='max-sm:hidden mr-5'>Welcome {companyData.name}</p>
             <div className='relative group'>
-              <img src={companyLogo} alt="company logo" className="w-10 h-10 rounded-full" />
+              <img src={companyData.image} alt="company logo" className="w-10 h-10 rounded-full" />
               <div className='absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded pt-12'>
                 <ul className='list-none m-0 p-2 bg-white rounded-md text-sm'>
-                  <li className='py-1 px-0.5 cursor-pointer pr-5'>Logout </li>
+                  <li onClick={logout}className='py-1 px-0.5 cursor-pointer pr-5'>Logout </li>
                 </ul>
               </div>
             </div>
           </div>
+          )}
         </div>
       </div>
 
@@ -48,7 +71,7 @@ const Dashboard = () => {
           </ul>
         </div>
 
-        <div>
+        <div className='flex-1 h-full p-2 sm:p-5'>
           <Outlet/>
         </div>
       </div>
