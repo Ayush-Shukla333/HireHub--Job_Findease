@@ -1,12 +1,17 @@
 import express from "express";
-import { getJobById, getJobs } from "../controllers/jobController.js";
+import {
+    getJobById,
+    getJobs,
+    updateJob,
+    deleteJob
+} from "../controllers/jobController.js";
+import { protectCompany } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-//Route to get all jobs data
-router.get("/", getJobs)
-
-//Route to get single job by ID
-router.get('/:id', getJobById)
+router.get("/", getJobs);
+router.get("/:id", getJobById);
+router.put("/:id", protectCompany, updateJob);
+router.delete("/:id", protectCompany, deleteJob);
 
 export default router;

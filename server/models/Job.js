@@ -10,6 +10,7 @@ const jobSchema = new mongoose.Schema({
     date: {type:Number, required:true},
     visible: { type: Boolean, default: true },
     companyId: { type: mongoose.Schema.Types.ObjectId, ref: 'Company', required: true },
+    embedding: {type: [Number], ref: 'embeddingId'}
 })
 const Job = mongoose.model('Job', jobSchema);
 export default Job;

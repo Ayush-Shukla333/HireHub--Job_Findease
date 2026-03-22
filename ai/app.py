@@ -2,7 +2,8 @@ import spacy
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_lg") 
+
 app = FastAPI()
 
 class ResumeInput(BaseModel):

@@ -4,16 +4,19 @@ import cors from 'cors'
 import connectDB from './config/db.js'
 import * as Sentry from "@sentry/node";
 import dotenv from "dotenv";
-import 'dotenv/config';
 import { clerkWebhooks } from './controllers/webhooks.js';
 import companyRoutes from './routes/companyRoutes.js';
 import connectCloudinary from './config/cloudinary.js';
 import jobRoutes from './routes/jobRoutes.js';  
 import userRoutes from './routes/userRoutes.js';
 import {clerkMiddleware} from '@clerk/express';
+import fs from 'fs';
+
 
 dotenv.config();
-
+if (!fs.existsSync('uploads')) {
+    fs.mkdirSync('uploads');
+}
 //Initailse Express
 const app = express() 
 

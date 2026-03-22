@@ -33,7 +33,7 @@ const AddJob = () => {
       {headers:{token:companyToken}})
 
       if (data.success) {
-        toast.success(data.message)
+        toast.success("Job Posted Successfully")
         setTitle('')
         setSalary(0)
         quillRef.current.root.innerHTML = "" //reset the description box

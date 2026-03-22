@@ -1,4 +1,3 @@
-import { viewApplicationsPageData } from '../assets/assets'
 import { FaDownload } from "react-icons/fa";
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
@@ -13,7 +12,6 @@ const ViewApplications = () => {
 
   const [applicants, setApplicants] = useState(false);
 
-  //Function to fetch compnay job applications data
   const fetchCompanyJobApplications = async () => {
     try {
       const { data } = await axios.get(backendUrl + '/api/company/applicants', { headers: { token: companyToken } })
@@ -29,7 +27,7 @@ const ViewApplications = () => {
       toast.error(error.message)
     }
   }
-  // Function to update job application status
+
   const changeJobApplicationStatus = async (id, status) => {
     try {
       const { data } = await axios.post(backendUrl + '/api/company/change-status', { id, status }, { headers: { token: companyToken } })
@@ -45,6 +43,7 @@ const ViewApplications = () => {
       toast.error(error.message)
     }
   }
+
   useEffect(() => {
     if (companyToken) {
       fetchCompanyJobApplications();
@@ -63,11 +62,11 @@ const ViewApplications = () => {
             <tr className='border-b'>
               <th className='py-2 px-4 text-left'>#</th>
               <th className='py-2 px-4 text-left'>User Name</th>
-              <th className='py-2 px-4 text-left max-sm:hidden'>Job Title </th>
+              <th className='py-2 px-4 text-left max-sm:hidden'>Job Title</th>
               <th className='py-2 px-4 text-left max-sm:hidden'>Location</th>
               <th className="py-2 px-4 text-left">Match %</th>
               <th className='py-2 px-4 text-left'>Resume</th>
-              <th className='py-2 px-4 text-left' >Action</th>
+              <th className='py-2 px-4 text-left'>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -81,9 +80,19 @@ const ViewApplications = () => {
                 <td className='py-2 px-4 border-b max-sm:hidden'>{applicant.jobId.title}</td>
                 <td className='py-2 px-4 border-b max-sm:hidden'>{applicant.jobId.location}</td>
                 <td className="py-2 px-4 border-b text-center">
-                  {applicant.matchScore ? `${applicant.matchScore}%` : "N/A"}
+                  {applicant.matchScore ? (
+                    <span className={`px-3 py-1 rounded-full text-sm font-bold ${applicant.matchScore >= 70
+                        ? 'bg-green-100 text-green-700'
+                        : applicant.matchScore >= 40
+                          ? 'bg-yellow-100 text-yellow-700'
+                          : 'bg-red-100 text-red-700'
+                      }`}>
+                      {applicant.matchScore}%
+                    </span>
+                  ) : (
+                    <span className='text-gray-400'>N/A</span>
+                  )}
                 </td>
-
                 <td className='py-2 px-4 border-b'>
                   <a href={applicant.userId.resume} target='_blank'
                     className='bg-blue-50 text-blue-400 px-2 py-1 rounded hover:bg-blue-100 transition-colors inline-flex gap-2 items-center'>
@@ -101,7 +110,6 @@ const ViewApplications = () => {
                     </div>
                     : <div>{applicant.status}</div>
                   }
-
                 </td>
               </tr>
             ))}

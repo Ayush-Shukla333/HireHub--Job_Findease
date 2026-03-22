@@ -32,10 +32,6 @@ HireHub is a full-stack MERN-based Job Portal that connects job seekers with emp
 - **Deployment**: Vercel (frontend) + hosted backend  
 - **CRUD operations** for jobs, candidates, and applications  
 
----
-
-## 🚀 Upcoming Features  
-
 ### 🤖 Resume Analysis + Job Match Scoring (AI/NLP Integration)  
 - Parse uploaded resumes using NLP  
 - Extract **skills, keywords, and experience**  

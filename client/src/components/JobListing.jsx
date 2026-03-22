@@ -29,15 +29,15 @@ const JobListing = () => {
   useEffect(() => {  //Filter jobs based on selected categories and locations
     const matchesCategory = job => selectedCategories.length === 0 || selectedCategories.includes(job.category);
     const matchesLocation = job => selectedLocations.length === 0 || selectedLocations.includes(job.location);
-    const matchesTitle = job=> searchFilter.title === "" || job.title.toLowerCase().includes(searchFilter.title.toLowerCase());
-    const matchesSearchLocation = job=> searchFilter.location === "" || job.location.toLowerCase().includes(searchFilter.location.toLowerCase());
+    const matchesTitle = job => searchFilter.title === "" || job.title.toLowerCase().includes(searchFilter.title.toLowerCase());
+    const matchesSearchLocation = job => searchFilter.location === "" || job.location.toLowerCase().includes(searchFilter.location.toLowerCase());
     const newFilterJobs = jobs.slice().reverse().filter(job => matchesCategory(job) && matchesLocation(job) && matchesTitle(job) && matchesSearchLocation(job));
-    
+
     setFilteredJobs(newFilterJobs);
     setCurrentPage(1); //Reset to first page whenever filters change
 
   }, [jobs, selectedCategories, selectedLocations, searchFilter]);
-  
+
   return (
     <div className="container 2xl:px-20 mx-auto flex flex-col lg:flex-row max-lg:space-y-8 py-2">
       {/* Sidebar */}
@@ -71,7 +71,7 @@ const JobListing = () => {
         }
         { /*Filter Toggle Button for small screen */}
         <div className="flex justify-start">
-          <button onClick = {e => setShowFilter(prev => !prev)} className='px-3 py-1.5 rounded border border-gray-400 lg:hidden mb-4'>
+          <button onClick={e => setShowFilter(prev => !prev)} className='px-3 py-1.5 rounded border border-gray-400 lg:hidden mb-4'>
             {showFilter ? "Hide Filters" : "Show Filters"}
           </button>
         </div>
@@ -84,7 +84,7 @@ const JobListing = () => {
               JobCategories.map((category, index) => {
                 return (
                   <li key={index} className="flex items-center gap-2">
-                    <input className="scale-125" type="checkbox" onChange={()=> handleCategoryChange(category)} checked = {selectedCategories.includes(category)} />
+                    <input className="scale-125" type="checkbox" onChange={() => handleCategoryChange(category)} checked={selectedCategories.includes(category)} />
                     {category}
                   </li>
                 )
@@ -101,7 +101,7 @@ const JobListing = () => {
               JobLocations.map((location, index) => {
                 return (
                   <li key={index} className="flex items-center gap-2">
-                    <input className="scale-125" type="checkbox" onChange={()=> handleLocationChange(location)} checked = {selectedLocations.includes(location)} />
+                    <input className="scale-125" type="checkbox" onChange={() => handleLocationChange(location)} checked={selectedLocations.includes(location)} />
                     {location}
                   </li>
                 )
@@ -116,27 +116,28 @@ const JobListing = () => {
         <h3 className="font-bold text-2xl py-2" id="job-list">Trending Jobs</h3>
         <p className='mb-8'>Secure latest jobs in top companies with desired job role</p>
         <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4'>
-          {filteredJobs.slice((currentPage-1)*6, currentPage*6).map((job, index) => (
+          {filteredJobs.slice((currentPage - 1) * 6, currentPage * 6).map((job, index) => (
             <JobCard key={index} job={job} />
           ))}
         </div>
 
         {/* Pagination*/}
+
         {filteredJobs.length > 0 && (
           <div className='mt-10 flex items-center justify-center space-x-6'>
             <a href="#job-list">
-            <button className="cursor-pointer" onClick={()=>setCurrentPage(Math.max(currentPage-1, 1))}><FaArrowLeft/></button>
+              <button className="cursor-pointer" onClick={() => setCurrentPage(Math.max(currentPage - 1, 1))}><FaArrowLeft /></button>
             </a>
 
-            {Array.from({ length: Math.ceil(jobs.length / 6) }).map((_, index)=>(
+            {Array.from({ length: Math.ceil(filteredJobs.length / 6) }).map((_, index) => (
               <a href="#job-list" key={index}>
-              <button className={`w-10 h-10 flex items-center justify-center rounded border border-gray-300 ${currentPage === index + 1 ? "bg-purple-700 text-white cursor-pointer" : "bg-white text-gray-800 cursor-pointer hover:bg-purple-300 hover:text-white"}`}
-              onClick={e => setCurrentPage(index + 1)} >{index+1}</button>
+                <button className={`w-10 h-10 flex items-center justify-center rounded border border-gray-300 ${currentPage === index + 1 ? "bg-purple-700 text-white cursor-pointer" : "bg-white text-gray-800 cursor-pointer hover:bg-purple-300 hover:text-white"}`}
+                  onClick={() => setCurrentPage(index + 1)} >{index + 1}</button>
               </a>
             ))}
 
             <a href="#job-list">
-            <button className="cursor-pointer" onClick={()=>setCurrentPage(Math.min(currentPage+1, Math.ceil(jobs.length / 6)))}><FaArrowRight/></button>
+              <button className="cursor-pointer" onClick={() => setCurrentPage(Math.min(currentPage + 1, Math.ceil(filteredJobs.length / 6)))}><FaArrowRight /></button>
             </a>
           </div>
         )}

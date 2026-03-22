@@ -4,6 +4,7 @@ import { v2 as cloudinary } from "cloudinary";
 import generateToken from "../utils/generateToken.js";
 import Job from "../models/Job.js";
 import JobApplication from "../models/JobApplication.js";
+import mongoose from "mongoose";
 
 // Register a new company
 export const registerCompany = async (req, res) => {
@@ -121,32 +122,32 @@ export const postJob = async (req, res) => {
 //get company job applicants
 export const getCompanyJobApplicants = async (req, res) => {
   try {
-    const companyId = req.company._id;
+    const companyId = req.company?._id;  // ALWAYS use _id (ObjectId)
 
-    // Fetch all job applications belonging to this company
-    const applications = await JobApplication.find({ companyId })
+    if (!companyId) {
+      return res.status(400).json({
+        success: false,
+        message: "Company ID missing in token/auth",
+      });
+    }
+
+    const applications = await JobApplication.find({
+      companyId: new mongoose.Types.ObjectId(companyId)
+    })
       .populate("jobId", "title location category level salary")
-      .populate("userId", "name image resume")
-      .exec();
+      .populate("userId", "name image resume resumeText matchScore");
 
     return res.json({
       success: true,
-      applications: applications.map(app => ({
-        _id: app._id,
-        user: app.userId,
-        job: app.jobId,
-        matchScore: app.matchScore ?? 0, // <-- THIS IS THE NEW FIELD
-        status: app.status,
-        date: app.date
-      }))
+      applications,
     });
-
   } catch (error) {
-    res.json({ success: false, message: error.message });
+    res.json({
+      success: false,
+      message: error.message,
+    });
   }
 };
-
-
 
 //Get company posted jobs
 export const getCompanyPostedJobs = async (req, res) => {
@@ -168,18 +169,14 @@ export const getCompanyPostedJobs = async (req, res) => {
 
 //change job application status
 export const changeJobApplicationStatus = async (req, res) => {
-  try {
-    const { id, status} = req.body;
-
-    //Find job application and update status
-    await JobApplication.findByIdAndUpdate({_id:id}, {status})
-
-    res.json({success: true, message: 'Status Changed'});
-  }
-  catch {
-    res.json({success: false, message: error.message});
-  }
-}
+    try {
+        const { id, status } = req.body;
+        await JobApplication.findByIdAndUpdate(id, { status });
+        res.json({ success: true, message: 'Status Changed' });
+    } catch (error) {  // ✅ Fixed: added 'error'
+        res.json({ success: false, message: error.message });
+    }
+};
 
 //change applications visibility
 export const changeVisibility = async (req, res) => {
