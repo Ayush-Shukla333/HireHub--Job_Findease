@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import moment from 'moment';
 import Footer from '../components/Footer';
-import Cloud from '../assets/cloud.png'
+import Cloud from '../assets/Cloud.png'
 import { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import { useUser, useAuth } from '@clerk/clerk-react';
