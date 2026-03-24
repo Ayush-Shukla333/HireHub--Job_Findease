@@ -2,7 +2,7 @@ import spacy
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-nlp = spacy.load("en_core_web_lg") 
+nlp = spacy.load("en_core_web_md") 
 
 app = FastAPI()
 
