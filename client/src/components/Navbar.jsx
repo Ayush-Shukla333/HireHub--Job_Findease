@@ -1,32 +1,71 @@
-import React, { use } from 'react'
+import React, { useContext } from 'react'
 import hirehubLogo from '../assets/Hirehub.png'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'
 import { useClerk, UserButton, useUser } from '@clerk/clerk-react'
-import { Link } from 'react-router-dom'
-import { useContext } from 'react';
-import { AppContext } from '../context/AppContext';
-const Navbar = () => {
-  const {openSignIn} = useClerk()
-  const {user} = useUser()
+import { AppContext } from '../context/AppContext'
 
-  const navigate = useNavigate();
-  const {setShowRecruiterLogin} = useContext(AppContext)
+const Navbar = () => {
+  const { openSignIn } = useClerk()
+  const { user } = useUser()
+  const navigate = useNavigate()
+  const { setShowRecruiterLogin } = useContext(AppContext)
+
   return (
-    <div className = "shadow py-4">
-      <div className = "container px-10 2xl mx-auto flex justify-between items-center">
-        <img onClick={()=> navigate('/')} src = {hirehubLogo} alt = "logo" className = "w-35 h-auto items-center cursor-pointer"/>
-        {
-          user ? <div className = "flex items-center gap-4">
-            <Link to={'/applications'}>Applied Jobs</Link>
-            <p>|</p>
-            <p className='max-sm:hidden'>Hi, {user.firstName+" "+user.lastName}</p>
-            <UserButton/>
+    <div className="shadow py-3 sm:py-4 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
+        {/* Logo */}
+        <img
+          onClick={() => navigate('/')}
+          src={hirehubLogo}
+          alt="logo"
+          className="w-28 sm:w-32 md:w-36 h-auto cursor-pointer"
+        />
+
+        {/* Right Section */}
+        {user ? (
+          <div className="flex items-center gap-2 sm:gap-4 text-sm sm:text-base">
+            <Link
+              to="/applications"
+              className="hidden sm:block hover:text-blue-700 transition"
+            >
+              Applied Jobs
+            </Link>
+
+            <Link
+              to="/applications"
+              className="sm:hidden hover:text-blue-700 transition"
+            >
+              Jobs
+            </Link>
+
+            <p className="hidden sm:block text-gray-400">|</p>
+
+            <p className="hidden md:block">
+              Hi, {user.firstName} {user.lastName}
+            </p>
+
+            <p className="block md:hidden">
+              Hi, {user.firstName}
+            </p>
+
+            <UserButton />
           </div>
-          :<div className="flex gap-8 max-sm:text-xs">
-          <button onClick={e=>setShowRecruiterLogin(true)} className="text-gray-600 cursor-pointer hover:bg-gray-100 border border-white rounded-4xl px-3 mb-1">Recruiter Login</button>
-          <button onClick={ e=>openSignIn() } className="bg-blue-800 text-white px-5 sm:px-8 py-2 rounded-full hover:bg-blue-600 cursor-pointer">Sign In</button>
-        </div>
-        }
+        ) : (
+          <div className="flex items-center gap-2 sm:gap-4 md:gap-6 text-xs sm:text-sm md:text-base">
+            <button
+              onClick={() => setShowRecruiterLogin(true)}
+              className="text-gray-600 cursor-pointer hover:bg-gray-100 border rounded-full px-3 sm:px-4 py-1.5 sm:py-2 transition"
+            >
+              Recruiter Login
+            </button>
+            <button
+              onClick={() => openSignIn()}
+              className="bg-blue-800 text-white px-4 sm:px-6 md:px-8 py-1.5 sm:py-2 rounded-full hover:bg-blue-600 cursor-pointer transition"
+            >
+              Sign In
+            </button>
+          </div>
+        )}
       </div>
     </div>
   )
