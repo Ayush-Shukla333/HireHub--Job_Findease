@@ -56,13 +56,13 @@ const ViewApplications = () => {
   }, [companyToken]);
 
   return applicants ? applicants.length === 0 ? (
-    <div className='flex items-center justify-center h-[60vh] sm:h-[70vh] px-4 text-center'>
+    <div className='flex items-center justify-center h-[60vh] sm:h-[70vh] px-4 text-center w-full'>
       <p className='text-lg sm:text-2xl'>No Applicants Available !!</p>
     </div>
   ) : (
-    <div className='container mx-auto p-3 sm:p-4 md:p-6'>
-      <div className='overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-sm'>
-        <table className='w-full min-w-190 max-w-4xl border bg-white border-gray-200 max-sm:text-sm'>
+    <div className='w-full px-3 sm:px-5 md:px-8 lg:px-12 xl:px-16 py-4 sm:py-6'>
+      <div className='w-full overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-sm'>
+        <table className='w-full min-w-[760px] border bg-white border-gray-200 max-sm:text-sm'>
           <thead>
             <tr className='border-b bg-gray-50'>
               <th className='py-3 px-3 sm:px-4 text-left'>#</th>
